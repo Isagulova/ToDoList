@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Редактировать задачу</title>
+  <link rel="stylesheet" th:href="@{/css/styles1.css}">
+</head>
+<body>
+<div class="task-edit-container">
+  <h2>Редактировать задачу</h2>
+
+  <form th:action="@{/tasks/{id}/edit(id=${task.id})}" method="post">
+    <label for="title">Название задачи:</label>
+    <input type="text" id="title" name="title" th:value="${task.title}" required>
+
+    <div class="buttons">
+      <button type="submit" class="save-btn">Сохранить</button>
+      <a th:href="@{/tasks}" class="cancel-btn">Отмена</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>

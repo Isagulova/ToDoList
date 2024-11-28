@@ -1,0 +1,76 @@
+/* Общий стиль для формы */
+.task-edit-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Заголовок формы */
+.task-edit-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Метка для поля ввода */
+.task-edit-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Поле ввода */
+.task-edit-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Кнопки */
+.task-edit-container .buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-edit-container button,
+.task-edit-container a {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Кнопка сохранить */
+.task-edit-container .save-btn {
+    background-color: #28a745;
+    transition: background-color 0.3s ease;
+}
+
+.task-edit-container .save-btn:hover {
+    background-color: #218838;
+}
+
+/* Кнопка отмена */
+.task-edit-container .cancel-btn {
+    background-color: #dc3545;
+    transition: background-color 0.3s ease;
+}
+
+.task-edit-container .cancel-btn:hover {
+    background-color: #c82333;
+}
