@@ -1,11 +1,12 @@
 package com.example.todolist.model;
 
+//Model классыбыз
 public class TaskModel {
-    private Long id;
+    private Long id;  //Автоинкремент
     private String title;
     private boolean completed;
 
-    // Конструкторы
+    // Конструкторлор
     public TaskModel() {}
 
     public TaskModel(Long id, String title) {
@@ -14,7 +15,7 @@ public class TaskModel {
         this.completed = false;
     }
 
-    // Геттеры и сеттеры
+    // Геттерлер и сеттерлер
     public Long getId() {
         return id;
     }

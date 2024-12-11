@@ -8,13 +8,13 @@
 <div class="container">
   <h1>Список задач</h1>
 
-  <!-- Форма для добавления новой задачи -->
+  <!-- Жаңы форма түзүү үчүн форма-->
   <form action="/tasks" method="post" class="add-task-form">
     <input type="text" name="title" placeholder="Введите новую задачу" required>
     <button type="submit">Добавить</button>
   </form>
 
-  <!-- Таблица задач -->
+  <!-- Тапшырмалар тизмеси -->
   <table class="task-table">
     <thead>
     <tr>
@@ -28,19 +28,19 @@
     <tr th:each="task : ${tasks}">
       <td th:text="${task.title}"></td>
       <td>
-        <!-- Галочка для отметки выполнения/снятия отметки -->
+        <!-- Тапшырмалардын аткарылып/аткарылбагандыгын белгилөө үчүн галочка -->
         <form th:action="@{/tasks/{id}/toggle-completion(id=${task.id})}" method="post">
           <input type="checkbox" th:checked="${task.completed}" onchange="this.form.submit()">
         </form>
       </td>
       <td>
-        <!-- Кнопка для редактирования задачи -->
+        <!-- Тапшырмаларды өзгөртүү үчүн кнопка -->
         <form th:action="@{/tasks/{id}/edit(id=${task.id})}" method="get">
           <button class="edit-btn" type="submit">Изменить</button>
         </form>
       </td>
       <td>
-        <!-- Кнопка для удаления задачи -->
+        <!-- Тапшырмаларды өчүрүү үчүн кнопка -->
         <form th:action="@{/tasks/{id}/delete(id=${task.id})}" method="post">
           <button class="delete-btn" type="submit">Удалить</button>
         </form>

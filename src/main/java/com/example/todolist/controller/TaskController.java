@@ -9,34 +9,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//Controller классыбызды белгилеп алабыз
 @Controller
+//RequestMapping жардамы менен HTTP запросубуздун маршрутун көрсөтөбүз
 @RequestMapping("/tasks")
 public class TaskController {
-
+    // Тапшырмаларды берилиштер базасына сактап отурбай, тизме түзүп, ушул тизмеге алгач сактай турсак болот
     private static List<TaskModel> tasks = new ArrayList<>();
     private static Long idCounter = 1L;
 
     static {
-        // Добавим несколько начальных задач
-        tasks.add(new TaskModel(idCounter++, "Первая задача"));
-        tasks.add(new TaskModel(idCounter++, "Вторая задача"));
+        // Алгач бир канча тапшырма кошуп алалы
+        tasks.add(new TaskModel(idCounter++, "А тапшырмасы"));
+        tasks.add(new TaskModel(idCounter++, "Б тапшырмасы"));
     }
 
-    // Отображение списка задач (HTML)
+    // Тапшырмалар тизмесинин көрсөтүлүшү (HTML)
     @GetMapping
     public String showTasks(Model model) {
         model.addAttribute("tasks", tasks);
         return "task-list";
     }
 
-    // Добавление новой задачи
+    // Жаңы тапшырмалардын кошулушу
     @PostMapping
     public String addTask(@RequestParam String title) {
         TaskModel newTask = new TaskModel(idCounter++, title);
         tasks.add(newTask);
         return "redirect:/tasks";
     }
-    // Показать форму редактирования задачи
+    // Тапшырмаларды өзгөртүү баракчасын көрсөтүү
     @GetMapping("/{id}/edit")
     public String showEditForm(@PathVariable Long id, Model model) {
         TaskModel task = tasks.stream()
@@ -44,13 +46,13 @@ public class TaskController {
                 .findFirst()
                 .orElse(null);
         if (task == null) {
-            return "redirect:/tasks"; // Если задача не найдена, перенаправить на список
+            return "redirect:/tasks"; // Тапшырмалар табылбаса тизмеге кайтаруу
         }
         model.addAttribute("task", task);
-        return "task-edit"; // Возвращает шаблон для редактирования
+        return "task-edit"; // Ал эми табылса тапшырмаларды өзгөртүү шаблону ачылат
     }
 
-    // Обновить задачу
+    // Ташырмаларды өзгөртүү
     @PostMapping("/{id}/edit")
     public String updateTask(@PathVariable Long id, @RequestParam String title) {
         tasks.stream()
@@ -61,31 +63,31 @@ public class TaskController {
     }
 
 
-    // Удаление задачи
+    // Тапшырмаларды өчүрүү
     @PostMapping("/{id}/delete")
     public String deleteTask(@PathVariable Long id) {
         tasks.removeIf(task -> task.getId().equals(id));
         return "redirect:/tasks";
     }
 
-    // Переключить статус выполнения задачи
+    // Тапшырмаларды аткарылды деп белгилеп, же тескерисинче аткарылбады деп
     @PostMapping("/{id}/toggle-completion")
     public String toggleTaskCompletion(@PathVariable Long id) {
         tasks.stream()
                 .filter(task -> task.getId().equals(id))
                 .findFirst()
-                .ifPresent(task -> task.setCompleted(!task.isCompleted())); // Инвертируем статус
+                .ifPresent(task -> task.setCompleted(!task.isCompleted())); // Статусун алмаштырабыз
         return "redirect:/tasks";
     }
 
-    // Получение всех задач в формате JSON
+    //Бардык тапшырмаларды JSON форматында алуу
     @GetMapping("/json")
     @ResponseBody
     public List<TaskModel> getTasksAsJson() {
         return tasks;
     }
 
-    // Получение одной задачи по ID в формате JSON
+    // Белгилүү бир тапшырманы анын id си аркылуу JSON форматында алуу
     @GetMapping("/json/{id}")
     @ResponseBody
     public ResponseEntity<TaskModel> getTaskById(@PathVariable Long id) {
