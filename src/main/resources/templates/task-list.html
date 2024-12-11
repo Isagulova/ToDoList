@@ -6,22 +6,22 @@
 </head>
 <body>
 <div class="container">
-  <h1>Список задач</h1>
+  <h1>Тапшырмалар тизмеси</h1>
 
   <!-- Жаңы форма түзүү үчүн форма-->
   <form action="/tasks" method="post" class="add-task-form">
-    <input type="text" name="title" placeholder="Введите новую задачу" required>
-    <button type="submit">Добавить</button>
+    <input type="text" name="title" placeholder="Жаңы тапшырманы кириңиз" required>
+    <button type="submit">Кошуу</button>
   </form>
 
   <!-- Тапшырмалар тизмеси -->
   <table class="task-table">
     <thead>
     <tr>
-      <th>Задача</th>
+      <th>Тапшырма</th>
       <th>Статус</th>
-      <th>Изменеие</th>
-      <th>Удаление</th>
+      <th>Өзгөртүү</th>
+      <th>Өчүрүү</th>
     </tr>
     </thead>
     <tbody>
@@ -36,13 +36,13 @@
       <td>
         <!-- Тапшырмаларды өзгөртүү үчүн кнопка -->
         <form th:action="@{/tasks/{id}/edit(id=${task.id})}" method="get">
-          <button class="edit-btn" type="submit">Изменить</button>
+          <button class="edit-btn" type="submit">Өзгөртүү</button>
         </form>
       </td>
       <td>
         <!-- Тапшырмаларды өчүрүү үчүн кнопка -->
         <form th:action="@{/tasks/{id}/delete(id=${task.id})}" method="post">
-          <button class="delete-btn" type="submit">Удалить</button>
+          <button class="delete-btn" type="submit">Өчүрүү</button>
         </form>
       </td>
     </tr>
